@@ -4,8 +4,7 @@ import com.fsse2603.labB02_2.data.person.domainObject.request.CreatePersonReques
 import com.fsse2603.labB02_2.data.person.domainObject.response.CreatePersonResponseData;
 import com.fsse2603.labB02_2.data.person.dto.request.CreatePersonRequestDto;
 import com.fsse2603.labB02_2.data.person.dto.response.CreatePersonResponseDto;
-import com.fsse2603.labB02_2.data.person.entity.PersonEntity;
-import com.fsse2603.labB02_2.serivce.PersonService;
+import com.fsse2603.labB02_2.service.PersonService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,7 +26,7 @@ public class PersonController {
         createPersonRequestData.setLastName(createPersonRequestDto.getLastName());
         createPersonRequestData.setHkid(createPersonRequestDto.getHkid());
 
-        PersonEntity createPersonResponseData = personService.createPerson(createPersonRequestData);
+        CreatePersonResponseData createPersonResponseData = personService.createPerson(createPersonRequestData);
 
         CreatePersonResponseDto createPersonResponseDto = new CreatePersonResponseDto();
         createPersonResponseDto.setFirstName(createPersonResponseData.getFirstName());
