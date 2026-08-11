@@ -5,6 +5,7 @@ import com.fsse2603.labB02_2.data.person.domainObject.request.CreatePersonReques
 import com.fsse2603.labB02_2.data.person.domainObject.response.CreatePersonResponseData;
 import com.fsse2603.labB02_2.data.person.dto.request.CreatePersonRequestDto;
 import com.fsse2603.labB02_2.data.person.dto.response.CreatePersonResponseDto;
+import com.fsse2603.labB02_2.data.person.dto.response.GetAllPeopleResponseDto;
 import com.fsse2603.labB02_2.mapper.person.PersonDataMapper;
 import com.fsse2603.labB02_2.mapper.person.PersonDtoMapper;
 import com.fsse2603.labB02_2.service.PersonService;
@@ -60,7 +61,11 @@ public class PersonController {
     }
 
     @GetMapping("/people")
-    public void getAllPeople(){
+    public List<GetAllPeopleResponseDto> getAllPeople(){
         List<GetAllPeopleResponseData> responseDataList = personService.getAllPeople();
+
+        List<GetAllPeopleResponseDto> responseDtoList = personDtoMapper.toGetAllPeopleResponseDtoList(responseDataList);
+
+        return responseDtoList;
     }
 }
