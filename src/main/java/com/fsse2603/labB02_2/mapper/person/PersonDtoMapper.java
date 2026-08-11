@@ -18,7 +18,7 @@ public class PersonDtoMapper {
         createPersonResponseDto.setLastName(createPersonResponseData.getLastName());
         createPersonResponseDto.setHkid(createPersonResponseData.getHkid());
 
-        return createP/rsonResponseDto;
+        return createPersonResponseDto;
 
     }
 
