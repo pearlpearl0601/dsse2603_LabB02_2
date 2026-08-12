@@ -22,16 +22,15 @@ public class PersonDtoMapper {
 
     }
 
-    public GetAllPeopleResponseDto toGetAllPeopleResponseDto(GetAllPeopleResponseData getAllPeopleResponseData){
-      GetAllPeopleResponseDto getAllPeopleResponseDto = new GetAllPeopleResponseDto();
+    public GetAllPeopleResponseDto toGetAllPeopleResponseDto(GetAllPeopleResponseData getAllPeopleResponseData) {
+        GetAllPeopleResponseDto getAllPeopleResponseDto = new GetAllPeopleResponseDto();
         getAllPeopleResponseDto.setFirstName(getAllPeopleResponseData.getFirstName());
         getAllPeopleResponseDto.setLastName(getAllPeopleResponseData.getLastName());
         getAllPeopleResponseDto.setHkid(getAllPeopleResponseData.getHkid());
 
         return getAllPeopleResponseDto;
-
-// this method used to change object into a list
-    public List<GetAllPeopleResponseDto> toGetAllPeopleResponseDtoList(List<GetAllPeopleResponseData> getAllPeopleResponseData){
+    }
+    public List<GetAllPeopleResponseDto> toGetAllPeopleResponseDtoList(List<GetAllPeopleResponseData> getAllPeopleResponseDataList){
        List<GetAllPeopleResponseDto> responseDtoList = new ArrayList<>();
 
        for(GetAllPeopleResponseData getAllPeopleResponseData: getAllPeopleResponseDataList){
