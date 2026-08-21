@@ -2,12 +2,15 @@ package com.fsse2603.labB02_2.service.impl;
 
 import com.fsse2603.labB02_2.data.person.domainObject.GetAllPeopleResponseData;
 import com.fsse2603.labB02_2.data.person.domainObject.request.CreatePersonRequestData;
+import com.fsse2603.labB02_2.data.person.domainObject.request.UpdatePersonRequestData;
 import com.fsse2603.labB02_2.data.person.domainObject.response.CreatePersonResponseData;
+import com.fsse2603.labB02_2.data.person.domainObject.response.PersonResponseData;
 import com.fsse2603.labB02_2.data.person.entity.PersonEntity;
+import com.fsse2603.labB02_2.exeption.person.PersonDataMissingException;
+import com.fsse2603.labB02_2.exeption.person.PersonNotFoundException;
 import com.fsse2603.labB02_2.mapper.person.PersonDataMapper;
 import com.fsse2603.labB02_2.mapper.person.PersonEntityMapper;
 import com.fsse2603.labB02_2.service.PersonService;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -64,5 +67,32 @@ public class PersonServiceImpl implements PersonService {
         return  responseDataList;
    }
 
+   @Override
+   public PersonResponseData updatePerson(UpdatePersonRequestData updatePersonRequestData){
+        if(updatePersonRequestData.getHkid() == null){
+            throw new PersonDataMissingException("hkid");
+        }
 
+        if(updatePersonRequestData.getLastName() == null){
+            throw new PersonDataMissingException("lastName");
+        }
+
+        if(updatePersonRequestData.getFirstName() == null){
+            throw new PersonDataMissingException("firstName");
+        }
+
+        for (PersonEntity personEntity: personEntityList){
+            if(personEntity.getHkid().equals(updatePersonRequestData.getHkid())){
+                personEntity.setFirstName(updatePersonRequestData.getFirstName());
+                personEntity.setLastName((updatePersonRequestData.getLastName()));
+
+                PersonResponseData responseData = personDataMapper.toPersonResponseData(personEntity);
+                return responseData;
+            }
+        }
+
+        throw new PersonNotFoundException(updatePersonRequestData.getHkid());
+
+
+   }
 }

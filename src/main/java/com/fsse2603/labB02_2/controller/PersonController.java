@@ -2,17 +2,18 @@ package com.fsse2603.labB02_2.controller;
 
 import com.fsse2603.labB02_2.data.person.domainObject.GetAllPeopleResponseData;
 import com.fsse2603.labB02_2.data.person.domainObject.request.CreatePersonRequestData;
+import com.fsse2603.labB02_2.data.person.domainObject.request.UpdatePersonRequestData;
 import com.fsse2603.labB02_2.data.person.domainObject.response.CreatePersonResponseData;
+import com.fsse2603.labB02_2.data.person.domainObject.response.PersonResponseData;
 import com.fsse2603.labB02_2.data.person.dto.request.CreatePersonRequestDto;
+import com.fsse2603.labB02_2.data.person.dto.request.UpdatePersonRequestDto;
 import com.fsse2603.labB02_2.data.person.dto.response.CreatePersonResponseDto;
 import com.fsse2603.labB02_2.data.person.dto.response.GetAllPeopleResponseDto;
+import com.fsse2603.labB02_2.data.person.dto.response.PersonResponseDto;
 import com.fsse2603.labB02_2.mapper.person.PersonDataMapper;
 import com.fsse2603.labB02_2.mapper.person.PersonDtoMapper;
 import com.fsse2603.labB02_2.service.PersonService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -67,5 +68,16 @@ public class PersonController {
         List<GetAllPeopleResponseDto> responseDtoList = personDtoMapper.toGetAllPeopleResponseDtoList(responseDataList);
 
         return responseDtoList;
+    }
+
+    @PutMapping("/people")
+    public PersonResponseDto updatePerson(@RequestBody UpdatePersonRequestDto requestDto){
+        UpdatePersonRequestData updatePersonRequestData = personDataMapper.toUpdatePersonRequestData(requestDto);
+
+        PersonResponseData responseData = personService.updatePerson(personDataMapper.toUpdatePersonRequestData(requestDto));
+
+        PersonResponseDto responseDto = personDtoMapper.toPersonResponseDto(responseData);
+
+        return responseDto;
     }
 }

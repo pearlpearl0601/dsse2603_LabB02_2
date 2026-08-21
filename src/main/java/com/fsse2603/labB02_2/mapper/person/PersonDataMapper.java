@@ -2,8 +2,11 @@ package com.fsse2603.labB02_2.mapper.person;
 
 import com.fsse2603.labB02_2.data.person.domainObject.GetAllPeopleResponseData;
 import com.fsse2603.labB02_2.data.person.domainObject.request.CreatePersonRequestData;
+import com.fsse2603.labB02_2.data.person.domainObject.request.UpdatePersonRequestData;
 import com.fsse2603.labB02_2.data.person.domainObject.response.CreatePersonResponseData;
+import com.fsse2603.labB02_2.data.person.domainObject.response.PersonResponseData;
 import com.fsse2603.labB02_2.data.person.dto.request.CreatePersonRequestDto;
+import com.fsse2603.labB02_2.data.person.dto.request.UpdatePersonRequestDto;
 import com.fsse2603.labB02_2.data.person.entity.PersonEntity;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +15,7 @@ import java.util.List;
 
 @Component   //become Spring beans and will take care of instance life cycle
 public class PersonDataMapper {
+    //RequestData
     public CreatePersonRequestData toCreatePersonRequestData (CreatePersonRequestDto createPersonRequestDto){
         CreatePersonRequestData createPersonRequestData = new CreatePersonRequestData();
         createPersonRequestData.setFirstName(createPersonRequestDto.getFirstName());
@@ -21,6 +25,20 @@ public class PersonDataMapper {
         return createPersonRequestData;
     }
 
+    //updateData
+    public UpdatePersonRequestData toUpdatePersonRequestData (UpdatePersonRequestDto updatePersonRequestDto){
+        UpdatePersonRequestData updatePersonRequestData = new UpdatePersonRequestData();
+        updatePersonRequestData.setFirstName(updatePersonRequestDto.getFirstName());
+        updatePersonRequestData.setLastName(updatePersonRequestDto.getLastName());
+        updatePersonRequestData.setHkid(updatePersonRequestDto.getHkid());
+
+        return updatePersonRequestData;
+    }
+
+
+
+
+    //ResponseData
     public CreatePersonResponseData toCreatePersonResponseData(PersonEntity personEntity){
         CreatePersonResponseData createPersonResponseData = new CreatePersonResponseData();
         createPersonResponseData.setFirstName(personEntity.getFirstName());
@@ -51,4 +69,15 @@ public class PersonDataMapper {
 
 
     }
+    // method to change Person Entity to PersonResponse Data
+    public PersonResponseData toPersonResponseData(PersonEntity personEntity){
+        PersonResponseData responseData = new PersonResponseData();
+        responseData.setFirstName(personEntity.getFirstName());
+        responseData.setLastName(personEntity.getLastName());
+       responseData.setHkid(personEntity.getHkid());
+
+        return responseData;
+    }
+
+
 }

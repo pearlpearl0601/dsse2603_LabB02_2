@@ -2,8 +2,10 @@ package com.fsse2603.labB02_2.mapper.person;
 
 import com.fsse2603.labB02_2.data.person.domainObject.GetAllPeopleResponseData;
 import com.fsse2603.labB02_2.data.person.domainObject.response.CreatePersonResponseData;
+import com.fsse2603.labB02_2.data.person.domainObject.response.PersonResponseData;
 import com.fsse2603.labB02_2.data.person.dto.response.CreatePersonResponseDto;
 import com.fsse2603.labB02_2.data.person.dto.response.GetAllPeopleResponseDto;
+import com.fsse2603.labB02_2.data.person.dto.response.PersonResponseDto;
 import com.fsse2603.labB02_2.data.person.entity.PersonEntity;
 import org.springframework.stereotype.Component;
 
@@ -41,5 +43,13 @@ public class PersonDtoMapper {
        return responseDtoList;
     }
 
+    public PersonResponseDto toPersonResponseDto(PersonResponseData responseData){
+        PersonResponseDto responseDto = new PersonResponseDto();
+        responseDto.setFirstName(responseData.getFirstName());
+        responseDto.setLastName(responseData.getLastName());
+        responseDto.setHkid(responseData.getHkid());
 
+        return responseDto;
+
+    }
 }
