@@ -11,12 +11,19 @@ import com.fsse2603.labB02_2.exeption.person.PersonNotFoundException;
 import com.fsse2603.labB02_2.mapper.person.PersonDataMapper;
 import com.fsse2603.labB02_2.mapper.person.PersonEntityMapper;
 import com.fsse2603.labB02_2.service.PersonService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
 @Service //@Component
 public class PersonServiceImpl implements PersonService {
+   //slf4j
+    private final Logger log = LoggerFactory.getLogger(PersonServiceImpl.class);
+
     private final PersonEntityMapper personEntityMapper;
     private final PersonDataMapper personDataMapper;
 
@@ -68,31 +75,38 @@ public class PersonServiceImpl implements PersonService {
    }
 
    @Override
-   public PersonResponseData updatePerson(UpdatePersonRequestData updatePersonRequestData){
-        if(updatePersonRequestData.getHkid() == null){
-            throw new PersonDataMissingException("hkid");
-        }
+   public PersonResponseData updatePerson(UpdatePersonRequestData updatePersonRequestData) {
+       try {
 
-        if(updatePersonRequestData.getLastName() == null){
-            throw new PersonDataMissingException("lastName");
-        }
+           if (updatePersonRequestData.getHkid() == null) {
+               throw new PersonDataMissingException("hkid");
 
-        if(updatePersonRequestData.getFirstName() == null){
-            throw new PersonDataMissingException("firstName");
-        }
+           }
 
-        for (PersonEntity personEntity: personEntityList){
-            if(personEntity.getHkid().equals(updatePersonRequestData.getHkid())){
-                personEntity.setFirstName(updatePersonRequestData.getFirstName());
-                personEntity.setLastName((updatePersonRequestData.getLastName()));
+           if (updatePersonRequestData.getLastName() == null) {
+               throw new PersonDataMissingException("lastName");
+           }
 
-                PersonResponseData responseData = personDataMapper.toPersonResponseData(personEntity);
-                return responseData;
-            }
-        }
+           if (updatePersonRequestData.getFirstName() == null) {
+               throw new PersonDataMissingException("firstName");
+           }
 
-        throw new PersonNotFoundException(updatePersonRequestData.getHkid());
+           for (PersonEntity personEntity : personEntityList) {
+               if (personEntity.getHkid().equals(updatePersonRequestData.getHkid())) {
+                   personEntity.setFirstName(updatePersonRequestData.getFirstName());
+                   personEntity.setLastName((updatePersonRequestData.getLastName()));
+
+                   PersonResponseData responseData = personDataMapper.toPersonResponseData(personEntity);
+                   return responseData;
+               }
+           }
+
+           throw new PersonNotFoundException(updatePersonRequestData.getHkid());
 
 
+       }catch (Exception ex){
+           log.warn("Update Person Failed: {}", ex.getMessage());
+           throw ex; //throw back to spingboot to execute
+       }
    }
 }

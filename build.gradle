@@ -17,8 +17,9 @@ repositories {
 	mavenCentral()
 }
 
-dependencies {
+dependencies { //click build.gradle -> Add Starters-> search validation
 	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
