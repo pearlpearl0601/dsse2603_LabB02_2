@@ -14,12 +14,15 @@ import com.fsse2603.labB02_2.mapper.person.PersonDataMapper;
 import com.fsse2603.labB02_2.mapper.person.PersonDtoMapper;
 import com.fsse2603.labB02_2.service.PersonService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@Validated
 public class PersonController {
     private final PersonService personService; //use interface here, to control the data
     private final PersonDataMapper personDataMapper;  //dependency injection of spring bean
@@ -81,6 +84,13 @@ public class PersonController {
 
         PersonResponseDto responseDto = personDtoMapper.toPersonResponseDto(responseData);
 
+        return responseDto;
+    }
+
+    @DeleteMapping("/people/{hkid}")
+    public PersonResponseDto deletePerson(@PathVariable @NotBlank String hkid){
+        PersonResponseData responseData = personService.deletePerson(hkid);
+        PersonResponseDto responseDto = personDtoMapper.toPersonResponseDto(responseData);
         return responseDto;
     }
 }

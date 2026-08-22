@@ -109,4 +109,22 @@ public class PersonServiceImpl implements PersonService {
            throw ex; //throw back to spingboot to execute
        }
    }
+
+   @Override
+   public PersonResponseData deletePerson(String hkid){
+        try {
+            for (PersonEntity personEntity : personEntityList) {
+                if (personEntity.getHkid().equals(hkid)) {
+                    personEntityList.remove(personEntity);
+                    PersonResponseData personResponseData = personDataMapper.toPersonResponseData(personEntity);
+                    return personResponseData;
+                }
+            }
+
+            throw new PersonNotFoundException(hkid);
+        } catch (Exception ex){
+            log.warn("Delete Person Failed: {}", ex.getMessage());
+            throw ex;
+        }
+    }
 }

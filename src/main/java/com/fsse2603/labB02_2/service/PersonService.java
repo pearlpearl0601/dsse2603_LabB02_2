@@ -14,5 +14,7 @@ public interface PersonService {
     List<GetAllPeopleResponseData> getAllPeople();
 
     PersonResponseData updatePerson(UpdatePersonRequestData updatePersonRequestData);
+
+    PersonResponseData deletePerson(String hkid);
 }
 
