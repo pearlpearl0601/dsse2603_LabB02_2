@@ -13,6 +13,7 @@ import com.fsse2603.labB02_2.data.person.dto.response.PersonResponseDto;
 import com.fsse2603.labB02_2.mapper.person.PersonDataMapper;
 import com.fsse2603.labB02_2.mapper.person.PersonDtoMapper;
 import com.fsse2603.labB02_2.service.PersonService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -71,7 +72,7 @@ public class PersonController {
     }
 
     @PutMapping("/people")
-    public PersonResponseDto updatePerson(@RequestBody UpdatePersonRequestDto requestDto){
+    public PersonResponseDto updatePerson(@Valid @RequestBody UpdatePersonRequestDto requestDto){
         UpdatePersonRequestData updatePersonRequestData = personDataMapper.toUpdatePersonRequestData(requestDto);
 
         PersonResponseData responseData = personService.updatePerson(personDataMapper.toUpdatePersonRequestData(requestDto));
