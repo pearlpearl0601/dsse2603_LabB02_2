@@ -14,6 +14,7 @@ import com.fsse2603.labB02_2.mapper.person.PersonDataMapper;
 import com.fsse2603.labB02_2.mapper.person.PersonDtoMapper;
 import com.fsse2603.labB02_2.service.PersonService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,6 +34,7 @@ public class PersonController {
 
 
     @PostMapping("/people")
+    @ResponseStatus(HttpStatus.CREATED)
     public CreatePersonResponseDto createPerson(@RequestBody CreatePersonRequestDto createPersonRequestDto){
         //Lv1
         // CreatePersonRequestData createPersonRequestData = new CreatePersonRequestData();
