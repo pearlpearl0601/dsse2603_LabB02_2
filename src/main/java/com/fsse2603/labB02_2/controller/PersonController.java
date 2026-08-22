@@ -78,19 +78,41 @@ public class PersonController {
 
     @PutMapping("/people")
     public PersonResponseDto updatePerson(@Valid @RequestBody UpdatePersonRequestDto requestDto){
-        UpdatePersonRequestData updatePersonRequestData = personDataMapper.toUpdatePersonRequestData(requestDto);
 
-        PersonResponseData responseData = personService.updatePerson(personDataMapper.toUpdatePersonRequestData(requestDto));
+        //Lv2
+//        UpdatePersonRequestData updatePersonRequestData = personDataMapper.toUpdatePersonRequestData(requestDto);
+//        PersonResponseData responseData = personService.updatePerson(personDataMapper.toUpdatePersonRequestData(requestDto));
+//        PersonResponseDto responseDto = personDtoMapper.toPersonResponseDto(responseData);
+//        return responseDto;
 
-        PersonResponseDto responseDto = personDtoMapper.toPersonResponseDto(responseData);
-
-        return responseDto;
+        //Lv3
+        return personDtoMapper.toPersonResponseDto(
+                personService.updatePerson(
+                        personDataMapper.toUpdatePersonRequestData(requestDto)
+                )
+        );
     }
 
     @DeleteMapping("/people/{hkid}")
     public PersonResponseDto deletePerson(@PathVariable @NotBlank String hkid){
-        PersonResponseData responseData = personService.deletePerson(hkid);
-        PersonResponseDto responseDto = personDtoMapper.toPersonResponseDto(responseData);
-        return responseDto;
+//        Lv2
+//        PersonResponseData responseData = personService.deletePerson(hkid);
+//        PersonResponseDto responseDto = personDtoMapper.toPersonResponseDto(responseData);
+//        return responseDto;
+
+//        lv3
+        return personDtoMapper.toPersonResponseDto(
+                personService.deletePerson(hkid)
+        );
+    }
+    @GetMapping("/people/{last_name}")
+    public List<PersonResponseDto> getByLastName(@PathVariable(value = "last_name")
+                                                      @NotBlank String lastName){
+
+        List<PersonResponseData> responseDataList = personService.getByLastName(lastName);
+
+        List<PersonResponseDto> responseDtoList = personDtoMapper.toPersonResponseDtoList(responseDataList);
+
+        return responseDtoList;
     }
 }

@@ -127,4 +127,16 @@ public class PersonServiceImpl implements PersonService {
             throw ex;
         }
     }
+    @Override
+    public List<PersonResponseData> getByLastName(String lastName){
+        List<PersonResponseData> resultList = new ArrayList<>();
+
+        for(PersonEntity personEntity: personEntityList){
+            if(personEntity.getLastName().equals(lastName)){
+                PersonResponseData responseData = personDataMapper.toPersonResponseData(personEntity);
+                resultList.add(responseData);
+            }
+        }
+        return resultList;
+    }
 }

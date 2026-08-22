@@ -14,7 +14,7 @@ import java.util.List;
 
 @Component
 public class PersonDtoMapper {
-    public CreatePersonResponseDto toCreatePersonResponseDto(CreatePersonResponseData createPersonResponseData){
+    public CreatePersonResponseDto toCreatePersonResponseDto(CreatePersonResponseData createPersonResponseData) {
         CreatePersonResponseDto createPersonResponseDto = new CreatePersonResponseDto();
         createPersonResponseDto.setFirstName(createPersonResponseData.getFirstName());
         createPersonResponseDto.setLastName(createPersonResponseData.getLastName());
@@ -32,18 +32,19 @@ public class PersonDtoMapper {
 
         return getAllPeopleResponseDto;
     }
-    public List<GetAllPeopleResponseDto> toGetAllPeopleResponseDtoList(List<GetAllPeopleResponseData> getAllPeopleResponseDataList){
-       List<GetAllPeopleResponseDto> responseDtoList = new ArrayList<>();
 
-       for(GetAllPeopleResponseData getAllPeopleResponseData: getAllPeopleResponseDataList){
-                GetAllPeopleResponseDto getAllPeopleResponseDto = toGetAllPeopleResponseDto(getAllPeopleResponseData);
-                responseDtoList.add(getAllPeopleResponseDto);
+    public List<GetAllPeopleResponseDto> toGetAllPeopleResponseDtoList(List<GetAllPeopleResponseData> getAllPeopleResponseDataList) {
+        List<GetAllPeopleResponseDto> responseDtoList = new ArrayList<>();
+
+        for (GetAllPeopleResponseData getAllPeopleResponseData : getAllPeopleResponseDataList) {
+            GetAllPeopleResponseDto getAllPeopleResponseDto = toGetAllPeopleResponseDto(getAllPeopleResponseData);
+            responseDtoList.add(getAllPeopleResponseDto);
         }
 
-       return responseDtoList;
+        return responseDtoList;
     }
 
-    public PersonResponseDto toPersonResponseDto(PersonResponseData responseData){
+    public PersonResponseDto toPersonResponseDto(PersonResponseData responseData) {
         PersonResponseDto responseDto = new PersonResponseDto();
         responseDto.setFirstName(responseData.getFirstName());
         responseDto.setLastName(responseData.getLastName());
@@ -52,4 +53,16 @@ public class PersonDtoMapper {
         return responseDto;
 
     }
+
+    public List<PersonResponseDto> toPersonResponseDtoList(List<PersonResponseData> responseDataList) {
+        List<PersonResponseDto> responseDtoList = new ArrayList<>();
+
+        for (PersonResponseData responseData : responseDataList) {
+            PersonResponseDto getAllPeopleResponseDto = toPersonResponseDto(responseData);
+            responseDtoList.add(getAllPeopleResponseDto);
+        }
+
+        return responseDtoList;
+    }
+
 }
