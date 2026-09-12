@@ -1,4 +1,4 @@
-package com.fsse2603.labB02_2.data.person.domainObject;
+package com.fsse2603.labB02_2.data.person.domainObject.response;
 
 public class GetAllPeopleResponseData {
     private String firstName;

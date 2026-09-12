@@ -5,7 +5,7 @@ import com.fsse2603.labB02_2.data.course.domainObject.request.UpdateCourseReques
 import com.fsse2603.labB02_2.data.course.domainObject.response.CourseResponseData;
 import com.fsse2603.labB02_2.data.course.entity.CourseEntity;
 import com.fsse2603.labB02_2.data.person.entity.PersonEntity;
-import com.fsse2603.labB02_2.exception.course.*;
+import com.fsse2603.labB02_2.exeption.course.*;
 import com.fsse2603.labB02_2.mapper.course.CourseDataMapper;
 import com.fsse2603.labB02_2.mapper.course.CourseEntityMapper;
 import com.fsse2603.labB02_2.service.CourseService;

@@ -1,9 +1,9 @@
 package com.fsse2603.labB02_2.mapper.person;
 
-import com.fsse2603.labB02_2.data.person.domainObject.GetAllPeopleResponseData;
 import com.fsse2603.labB02_2.data.person.domainObject.request.CreatePersonRequestData;
 import com.fsse2603.labB02_2.data.person.domainObject.request.UpdatePersonRequestData;
 import com.fsse2603.labB02_2.data.person.domainObject.response.CreatePersonResponseData;
+import com.fsse2603.labB02_2.data.person.domainObject.response.GetAllPeopleResponseData;
 import com.fsse2603.labB02_2.data.person.domainObject.response.PersonResponseData;
 import com.fsse2603.labB02_2.data.person.dto.request.CreatePersonRequestDto;
 import com.fsse2603.labB02_2.data.person.dto.request.UpdatePersonRequestDto;
@@ -13,71 +13,68 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component   //become Spring beans and will take care of instance life cycle
+@Component
 public class PersonDataMapper {
-    //RequestData
-    public CreatePersonRequestData toCreatePersonRequestData (CreatePersonRequestDto createPersonRequestDto){
-        CreatePersonRequestData createPersonRequestData = new CreatePersonRequestData();
-        createPersonRequestData.setFirstName(createPersonRequestDto.getFirstName());
-        createPersonRequestData.setLastName(createPersonRequestDto.getLastName());
-        createPersonRequestData.setHkid(createPersonRequestDto.getHkid());
-
-        return createPersonRequestData;
+    //    RequestDate
+    public CreatePersonRequestData toCreatePersonRequestData(CreatePersonRequestDto requestDto) {
+        CreatePersonRequestData requestData = new CreatePersonRequestData();
+        requestData.setFirstName(requestDto.getFirstName());
+        requestData.setLastName(requestDto.getLastName());
+        requestData.setHkid(requestDto.getHkid());
+        return requestData;
     }
 
-    //updateData
-    public UpdatePersonRequestData toUpdatePersonRequestData (UpdatePersonRequestDto updatePersonRequestDto){
-        UpdatePersonRequestData updatePersonRequestData = new UpdatePersonRequestData();
-        updatePersonRequestData.setFirstName(updatePersonRequestDto.getFirstName());
-        updatePersonRequestData.setLastName(updatePersonRequestDto.getLastName());
-        updatePersonRequestData.setHkid(updatePersonRequestDto.getHkid());
-
-        return updatePersonRequestData;
+    public UpdatePersonRequestData toUpdatePersonRequestData(UpdatePersonRequestDto requestDto) {
+        UpdatePersonRequestData requestData = new UpdatePersonRequestData();
+        requestData.setFirstName(requestDto.getFirstName());
+        requestData.setLastName(requestDto.getLastName());
+        requestData.setHkid(requestDto.getHkid());
+        return requestData;
     }
 
-
-
-
-    //ResponseData
-    public CreatePersonResponseData toCreatePersonResponseData(PersonEntity personEntity){
-        CreatePersonResponseData createPersonResponseData = new CreatePersonResponseData();
-        createPersonResponseData.setFirstName(personEntity.getFirstName());
-        createPersonResponseData.setLastName(personEntity.getLastName());
-        createPersonResponseData.setHkid(personEntity.getHkid());
-
-        return createPersonResponseData;
-    }
-
-    public GetAllPeopleResponseData toGetAllPeopleResponseData (PersonEntity personEntity){
-        GetAllPeopleResponseData getAllPeopleResponseData = new GetAllPeopleResponseData();
-        getAllPeopleResponseData.setFirstName(personEntity.getFirstName());
-        getAllPeopleResponseData.setLastName(personEntity.getLastName());
-        getAllPeopleResponseData.setHkid(personEntity.getHkid());
-
-        return getAllPeopleResponseData;
-    }
-// this method used to change object into a list
-    public List<GetAllPeopleResponseData> toGetAllPeopleResponseDataList(List<PersonEntity> personEntityList){
-        List<GetAllPeopleResponseData> responseDataList = new ArrayList<>();
-
-        for(PersonEntity personEntity: personEntityList){
-            GetAllPeopleResponseData getAllPeopleResponseData = toGetAllPeopleResponseData(personEntity);
-            responseDataList.add(getAllPeopleResponseData);
-        }
-
-        return responseDataList;
-
-
-    }
-    // method to change Person Entity to PersonResponse Data
-    public PersonResponseData toPersonResponseData(PersonEntity personEntity){
-        PersonResponseData responseData = new PersonResponseData();
+    //    ResponseData
+    public CreatePersonResponseData toCreatePersonResponseData(PersonEntity personEntity) {
+        CreatePersonResponseData responseData = new CreatePersonResponseData();
         responseData.setFirstName(personEntity.getFirstName());
         responseData.setLastName(personEntity.getLastName());
-       responseData.setHkid(personEntity.getHkid());
-
+        responseData.setHkid(personEntity.getHkid());
         return responseData;
     }
 
+    public GetAllPeopleResponseData toGetAllPeopleResponseData(PersonEntity personEntity) {
+        GetAllPeopleResponseData responseData = new GetAllPeopleResponseData();
+        responseData.setFirstName(personEntity.getFirstName());
+        responseData.setLastName(personEntity.getLastName());
+        responseData.setHkid(personEntity.getHkid());
+        return responseData;
+    }
 
+    public List<GetAllPeopleResponseData> toGetAllPeopleResponseDataList(List<PersonEntity> personEntityList) {
+        List<GetAllPeopleResponseData> responseDataList = new ArrayList<>();
+
+        for (PersonEntity personEntity : personEntityList) {
+            GetAllPeopleResponseData responseData = toGetAllPeopleResponseData(personEntity);
+            responseDataList.add(responseData);
+        }
+
+        return responseDataList;
+    }
+
+    public PersonResponseData toPersonResponseData(PersonEntity personEntity) {
+        PersonResponseData responseData = new PersonResponseData();
+        responseData.setFirstName(personEntity.getFirstName());
+        responseData.setLastName(personEntity.getLastName());
+        responseData.setHkid(personEntity.getHkid());
+        return responseData;
+    }
+
+    public List<PersonResponseData> toPersonResponseDataList(List<PersonEntity> entityList) {
+        List<PersonResponseData> responseDataList = new ArrayList<>();
+
+        for (PersonEntity entity : entityList) {
+            responseDataList.add(toPersonResponseData(entity));
+        }
+
+        return responseDataList;
+    }
 }

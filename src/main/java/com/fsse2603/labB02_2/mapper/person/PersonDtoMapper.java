@@ -1,12 +1,11 @@
 package com.fsse2603.labB02_2.mapper.person;
 
-import com.fsse2603.labB02_2.data.person.domainObject.GetAllPeopleResponseData;
+import com.fsse2603.labB02_2.data.person.domainObject.response.GetAllPeopleResponseData;
 import com.fsse2603.labB02_2.data.person.domainObject.response.CreatePersonResponseData;
 import com.fsse2603.labB02_2.data.person.domainObject.response.PersonResponseData;
 import com.fsse2603.labB02_2.data.person.dto.response.CreatePersonResponseDto;
 import com.fsse2603.labB02_2.data.person.dto.response.GetAllPeopleResponseDto;
 import com.fsse2603.labB02_2.data.person.dto.response.PersonResponseDto;
-import com.fsse2603.labB02_2.data.person.entity.PersonEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.fsse2603.labB02_2.exeption.person;
+package com.fsse2603.labB02_2.exception.person;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
